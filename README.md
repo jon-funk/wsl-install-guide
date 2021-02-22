@@ -29,18 +29,29 @@ Our linux subsystem is a different volume so we need to transfer the binary ther
 
 `tar -xvf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz`
 
-`cd openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/ && mv oc /usr/bin/`
+`cd openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/ && sudo mv oc /usr/bin/`
+
+## Install WSL vscode plugin
+* Install WSL plugin for vscode
+
+
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
 
 ## Install Docker
 * Ensure the WSL engine config is enabled in docker desktop for windows:
 https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop
 * You may need to grant sudo to docker
+`sudo usermod -aG docker $USER`
+
+`Note: Kill the WSL terminal and restart it so permissions are applied to the new session`
 
 ## Install Make
 `sudo apt-get install make`
 
 ## Extras:
 * want to not copy your windows source files? use a soft link to your src in the windows volume:
-`ln -s mnt/c//Users/<SRCLOCATION> windowsfiles`
+`ln -s mnt/c/Users/<SRCLOCATION> windowsfiles`
 
-* SSH Keys: WSL uses its own SSH agent, you can copy your windows ssh key by using `cp` like in the oc step, and moving them to a `~/.ssh` directory
+* SSH Keys: WSL uses its own SSH agent, you can copy your windows ssh key by using `cp` like in the oc step, and moving them to a `~/.ssh` directory with `mv`
+
+* Disable bell via https://stackoverflow.com/a/36726662 steps 1 & 2 in most cases
